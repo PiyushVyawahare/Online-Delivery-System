@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import Mobile from './Mobile';
 import SelectOrders from './SelectOrders';
+import api from '../../api';
 
 function Copyright() {
   return (
@@ -34,9 +35,9 @@ const steps = ['Mobile Number', 'Select orders', 'Shipping address'];
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <Mobile />
+      return <Mobile />;
     case 1:
-      return <SelectOrders />;
+      return <SelectOrders></SelectOrders>;
     case 2:
       return <AddressForm />;
     default:
@@ -50,6 +51,7 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
+
     setActiveStep(activeStep + 1);
   };
 
