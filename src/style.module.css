@@ -1,0 +1,9 @@
+body{
+  background-color: rgba(19, 25, 39, 0.904);
+  color: white;
+}
+
+:root{
+  --primary: rgb(15, 22, 36);
+  --secondary: white;
+}
