@@ -13,6 +13,13 @@ export default function AddressForm() {
   function handleChange(event){
     setTime(event.target.value);
   }
+
+  const [checked, setChecked] = React.useState(true);
+
+  const handleCheckChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
   
   function DisplayCurrentTime(i) {
     var date = new Date();
@@ -140,18 +147,17 @@ export default function AddressForm() {
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={6}>
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-standard-label">Select Slot</InputLabel>
+            <Checkbox
+              onChange={handleCheckChange}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
             <TextField
-              required
-              id="country"
-              name="country"
-              label="Country"
-              fullWidth
-              autoComplete="shipping country"
+              id="tip"
+              name="tip"
+              label="Tip Amount"
+              disabled={!checked}
               variant="standard"
             />
-          </FormControl>
         </Grid>
       </Grid>
     </React.Fragment>
