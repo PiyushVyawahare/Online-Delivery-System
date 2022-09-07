@@ -5,9 +5,13 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function Mobile() {
+export default function Mobile(props) {
 
- 
+  var setMobile = props.onClick;
+  var mobile = props.mobile;
+  function onMobileEntered(event){
+    setMobile(event.target.value);
+  }
 
   return (
     <React.Fragment>
@@ -24,6 +28,8 @@ export default function Mobile() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            onChange={onMobileEntered}
+            value={mobile}
           />
         </Grid>
       </Grid>

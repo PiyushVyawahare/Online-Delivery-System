@@ -30,26 +30,27 @@ function Copyright() {
   );
 }
 
-const steps = ['Mobile Number', 'Select orders', 'Shipping address'];
+const steps = ['Mobile Number', 'Select orders', 'Shipping time and address'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <Mobile />;
-    case 1:
-      return <SelectOrders></SelectOrders>;
-    case 2:
-      return <AddressForm />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
 
 const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
-
+  const [mobile, setMobile] = React.useState("");
+  
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <Mobile onClick={setMobile} mobile={mobile}/>;
+      case 1:
+        return <SelectOrders mobile={mobile}/>;
+      case 2:
+        return <AddressForm />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
   const handleNext = () => {
 
     setActiveStep(activeStep + 1);
@@ -74,6 +75,7 @@ export default function Checkout() {
               </Step>
             ))}
           </Stepper>
+          
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>

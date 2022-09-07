@@ -25,7 +25,7 @@ const MenuProps = {
 
 
 export default function SelectOrders(props) {
-  
+  const mobile = props.mobile;
   const [names, setNames] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [personName, setPersonName] = useState([]);
@@ -35,7 +35,7 @@ export default function SelectOrders(props) {
   }, []);
 
   const getAllNodes = () => {
-    api.post('/getOrders', {mobile: '9309982738'})
+    api.post('/getOrders', {mobile: mobile})
     .then(function(data){
       console.log(data);
       for(let i = 0; i < data.data.length; i++){

@@ -4,8 +4,23 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { Select, FormControl, MenuItem, InputLabel } from '@mui/material';
 
 export default function AddressForm() {
+
+  const [time, setTime] = React.useState("");
+
+  function handleChange(event){
+    setTime(event.target.value);
+  }
+  
+  function DisplayCurrentTime(i) {
+    var date = new Date();
+    var hours = (date.getHours()+i) < 10 ? "0" + (date.getHours()+i) : (date.getHours()+i);
+    return hours+":00 - "+(hours+1)+":00";
+  };
+
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -102,6 +117,41 @@ export default function AddressForm() {
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="Use this address for payment details"
           />
+        </Grid>
+        <br />
+        <Grid item xs={12} sm={6}>
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-standard-label">Select Slot</InputLabel>
+            <Select
+              labelId="timeslot"
+              id="timeslot"
+              value={time}
+              onChange={handleChange}
+              label="Select Slot"
+            >
+              
+              <MenuItem value={0}>{DisplayCurrentTime(0)}</MenuItem>
+              <MenuItem value={1}>{DisplayCurrentTime(1)}</MenuItem>
+              <MenuItem value={2}>{DisplayCurrentTime(2)}</MenuItem>
+              <MenuItem value={3}>{DisplayCurrentTime(3)}</MenuItem>
+              <MenuItem value={4}>{DisplayCurrentTime(4)}</MenuItem>
+
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-standard-label">Select Slot</InputLabel>
+            <TextField
+              required
+              id="country"
+              name="country"
+              label="Country"
+              fullWidth
+              autoComplete="shipping country"
+              variant="standard"
+            />
+          </FormControl>
         </Grid>
       </Grid>
     </React.Fragment>
